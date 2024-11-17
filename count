@@ -1,0 +1,21 @@
+module count( 
+    input sys_clk,
+	input sys_rst_n,
+   output reg led
+    );
+reg[25:0] num;
+
+always@(posedge sys_clk or negedge sys_rst_n) 
+	if(!sys_rst_n) begin
+		led <= 1'b0;
+		num<=0;
+	end 
+   else begin 
+	if(num==25000000) begin 
+		num <= 0;
+		led<=~led;
+		end 
+		else num<=num+1;
+	end
+
+endmodule
